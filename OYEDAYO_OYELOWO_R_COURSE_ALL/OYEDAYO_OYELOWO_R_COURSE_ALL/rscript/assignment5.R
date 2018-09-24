@@ -1,0 +1,151 @@
+#clear memory
+rm(list = ls())
+
+setwd("C:/Users/oyeda/Desktop/R_COURSE/assignment5")
+
+#load the data
+data<-read.table("puudata.txt", header = T, sep = "\t")
+
+#Exercise 1
+#a) Plot the height of living crown (ELAVALARAJA) as a function of 
+#height (PITUUS). Try using dots and lines. Which one is better?
+plot(data$ELAVALARAJA~data$PITUUS,  type = "p")
+plot(data$ELAVALARAJA~data$PITUUS, type = "l")
+
+#The dots plot is better.
+
+#b) Exclude the incorrect data entries (height of living crown 
+#over 40 meters) out of the picture by changing limits of x- and y-axis.
+?plot
+plot(data$ELAVALARAJA~data$PITUUS, type = "p", ylim = c(0,400))
+plot(ELAVALARAJA~PITUUS , data=data,   ylim=c(0,400),
+     xlab = "Height", ylab = "Height Living Crown")
+#?~
+
+#c) Give proper names for both of the axes
+plot(data$ELAVALARAJA~data$PITUUS, type = "p", ylim = c(0,400), 
+     xlab = "Height", ylab = "Height Living Crown")
+
+
+
+
+
+
+#d) Add a line x = y to the picture. How would you describe the 
+#observation on the line? What about on top of the line? 
+###########################################################
+#?abline
+plot(ELAVALARAJA~PITUUS, data=data, type = "p", ylim = c(0,400), 
+     xlab = "Height", ylab = "Height Living Crown")
+fit <- lm(ELAVALARAJA~PITUUS, data = data)
+abline(fit, col="red", lwd=2)
+
+#The observations on the line are those where the predictions with zero 
+#vertical deviation and fit with the prediction while those on top are
+#the positive residuals
+###################################################
+
+
+
+#Exercise 2
+#a) Plot height of the birches (PUULAJI=3) in the first canopy cover 
+#layer as a function of the tree diameter.
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(PITUUS ~ LPM, data=p1)
+#or
+#plot(p1$PITUUS~p1$LPM, col="green")
+#or
+#plot(PITUUS~LPM, p1)
+
+
+#b) Change the picture so that the observations are drawn as green circles with black border.
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+
+#c) Change the style of the two differing observations as red triangles with black border 
+#(form a new subset and draw it with points function)
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+
+
+#Exercise 3 Exercise 2 continues.
+#a) Add line y=250 to the picture. Determine the color 
+#as red and the line width as 2.
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+#?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+
+#c) Add a line that travels through origin (point (0,0)) 
+#and has slope value of 1.1. Use dashed
+#line type and choose some nice color (available colors
+#can be found with command colors()).
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+
+#d) Add a text into the formed rectangle (on lower right corner) that says "Erroneous
+#observations". 
+# Add text
+# Add text using the following Corner_text function:
+
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+  legend(position,legend=text, bty ="n", pch=NA) 
+}
+
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using 
+#functions
+text_corner(text="Erroneous observations", position= "bottomright") 
+
+
+#Exercise 4
+
+#Plot the heights of the pines growing in the first
+#Add the pines in the second canopy layer to the same 
+#graph. Choose such styles and colors that
+#the figure is easy to interpret. What can be easily 
+#deduced from the graph?
+
+#canopy cover layer as a function of stem diameter.
+pines_canopy1 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==1)
+pines_canopy2 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==2)
+
+#plot height as a function of stem diameter
+{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+     main="Height vs Stem diameter",col="blue")
+
+  
+#alternatives
+#plot(data$LPM, data$PITUUS)
+#plot(data$PITUUS ~ data$LPM)
+
+par(new=T)
+plot(PITUUS ~ LPM, pines_canopy2, xlim=c(min(pines_canopy1$LPM),
+     max(pines_canopy1$LPM)), xlab=NA, ylab=NA, 
+     ylim=c(min(pines_canopy1$PITUUS),max(pines_canopy1$PITUUS)),
+     col="red")
+
+legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+       col=c("blue", "red"), pch = 1, cex=0.8)
+#instead of using bottomright, a coordinate for the legend can
+#also be used. e,g 410, 190
+
+}
+
+#alternatively, this can be done by plotting for the first,
+#and basically adding points from the second data
+
+{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+     main="Height vs Stem diameter",col="blue")
+
+points(pines_canopy2$LPM, pines_canopy2$PITUUS, pch=1, col="red")
+# Add a legend
+legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+       col=c("blue", "red"), pch = 1, cex=0.8)
+}
+
+#From the plot, it can be deduced that the first canopy of the Pines
+#Species account mostly for the height- Stem diameter relationship.
+

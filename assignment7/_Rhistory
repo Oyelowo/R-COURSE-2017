@@ -1,0 +1,512 @@
+{
+h <- d <- c()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h,d)
+}
+{
+h <- d <- c()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h,d)
+}
+{
+h <- d <- c()
+i <- 0
+while (i < nrow(data)) {
+i = i + 1
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h, d, col="red")
+}
+par(new=T)
+{
+h <- d <- c()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h, d, col= "green")
+}
+par(new=T)
+dbirch30 = data[data$PUULAJI == 4 & data$LPM > 30,]
+plot(dbirch30$LPM, dbirch30$PITUUS)
+{
+h <- d <- c()
+i <- 0
+while (i < nrow(data)) {
+i = i + 1
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h, d, col="red")
+}
+par(new=T)
+{
+h <- d <- c()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h, d, col= "green")
+}
+par(new=T)
+dbirch30 = data[data$PUULAJI == 4 & data$LPM > 30,]
+plot(dbirch30$PITUUS, dbirch30$LPM, col="blue")
+dim(data)
+levels(data$PUULAJI)
+{
+h <- d <- c()
+i <- 0
+while (i < nrow(data)) {
+i = i + 1
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h,
+d,
+col = "red",
+ylab = "Diameter",
+xlab = "Height")
+}
+par(new = T)
+{
+h <- d <- c()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h,
+d,
+col = "green",
+ylab = "Diameter",
+xlab = "Height")
+}
+dbirch30 = data[data$PUULAJI == 4 & data$LPM > 30, ]
+plot(
+dbirch30$PITUUS,
+dbirch30$LPM,
+col = "blue",
+ylab = "Diameter",
+xlab = "Height"
+)
+a<-c()
+{
+h <- d <- c()
+i <- 0
+while (i < nrow(data)) {
+i = i + 1
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h,
+d,
+col = "red",
+ylab = "Diameter",
+xlab = "Height")
+}
+par(new = T)
+{
+h <- d <- c()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+h <- append(h, data$PITUUS[i])
+d <- append(d, data$LPM[i])
+}
+}
+plot(h,
+d,
+col = "green",
+ylab = "Diameter",
+xlab = "Height")
+}
+dbirch30 = data[data$PUULAJI == 4 & data$LPM > 30, ]
+plot(dbirch30$PITUUS, dbirch30$LPM, col = "blue",
+ylab = "Diameter", xlab = "Height")
+ba<-c()
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, (((data$LPM[j]*0.1)^2)*pi)/4 )
+}
+}
+pines <- data[data$PUULAJI == 1,]
+pines$ba <- round((pi * ((pines$LPM * 0.1) ^ 2)) / 4, 2)
+ba<- as.data.frame.vector(ba)
+View(ba)
+View(ba)
+ba<- as.data.frame(ba)
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, (((data$LPM[j]*0.1)^2)*pi)/4 )
+}
+}
+ba<- as.data.frame(ba)
+View(ba)
+View(ba)
+a<-data.frame()
+a<-data.frame()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+d[i]<-i
+a<-cbind(d)
+}
+}
+a<-data.frame()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+d<-i
+a<-cbind(d)
+}
+}
+View(a)
+a<-data.frame()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+d<-data[i]
+a<-cbind(d)
+}
+}
+h <- d <- c()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+d<-data[i]
+dfa<-cbind(d)
+}
+}
+h <- d <- c()
+for (i in 1:nrow(data)) {
+if (data$PUULAJI[i] == 4 & data$LPM[i] > 30) {
+d[i]<-i
+dfa<-cbind(d)
+}
+}
+nrow(pines)
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, (((data$LPM[j]*0.1)^2)*pi)/4 )
+}
+}
+pines1 <- subset(data, data$PUULAJI==1)
+pines_ba <- cbind.data.frame(pines1, ba)
+View(pines_ba)
+View(pines_ba)
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+pines1 <- subset(data, data$PUULAJI==1)
+pines_ba <- cbind.data.frame(pines1, ba)
+View(pines_ba)
+View(pines_ba)
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- subset(data, data$PUULAJI==1)
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+pines3 <- data[data$PUULAJI == 1, 3]
+pines3 <- data[data$PUULAJI == 1, 3]
+pines <- data[data$PUULAJI == 1,]
+pines$ba <- round((pi * ((pines$LPM * 0.1) ^ 2)) / 4, 2)
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- subset(data, data$PUULAJI==1)
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+View(pines)
+View(pines)
+View(pines)
+View(pines_ba)
+View(pines_ba)
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- subset(data, data$PUULAJI==1)
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(sort(pines1), sort(ba))
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-0
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- subset(data, data$PUULAJI==1)
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- subset(data, data$PUULAJI==1)
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+View(pines_ba)
+View(pines_ba)
+?cbind
+?cbind.data.frame
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- subset(data, data$PUULAJI[j]==1)
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines <- data[data$PUULAJI[i] == 1,]
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines <- data[data$PUULAJI == 1,]
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines <- data[data$PUULAJI == 1,]
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines <- data[data$PUULAJI == 1,]
+ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI == 1,]
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI[i] == 1,]
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI[j] == 1,]
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+pines1 <- data[data$PUULAJI[j] == 1,]
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+pines_ba <- cbind.data.frame(pines1, ba)
+}
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI == 1,]
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI == 1,]
+#ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI == 1,]
+ba<- as.data.frame(ba)
+pines_ba <- cbind.data.frame(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+View(ba)
+View(ba)
+View(pines_ba)
+View(pines_ba)
+pines$ba <- round((pi * ((pines$LPM * 0.1) ^ 2)) / 4, 2)
+View(pines)
+View(pines)
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI == 1,]
+ba<- as.data.frame(ba)
+pines_ba <- cbind(pines1, ba)
+#ba<- as.data.frame.vector(ba)
+}
+View(pines_ba)
+View(pines_ba)
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI == 1,]
+ba<- as.data.frame(ba)
+pines_ba <- cbind(ba, pines1)
+#ba<- as.data.frame.vector(ba)
+}
+View(pines_ba)
+View(pines_ba)
+View(pines_ba)
+View(pines_ba)
+ba<-c()
+{
+ba<-c()
+for (j in 1:nrow(data)) {
+if (data$PUULAJI[j] == 1) {
+ba <- append(ba, round(((data$LPM[j]*0.1)^2)*pi)/4, 2)
+}
+}
+#subset the data to pine species
+pines1 <- data[data$PUULAJI == 1,]
+ba<- as.data.frame(ba)
+pines_ba <- cbind(ba, pines1)
+#ba<- as.data.frame.vector(ba)
+}
+View(pines_ba)
+View(pines_ba)

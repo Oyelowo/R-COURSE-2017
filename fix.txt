@@ -1,0 +1,33 @@
+I have now checked your assignments. Overall you got 50/60 points from the excercises and 15/20 from the modelling task. The total of 65 points leads to grade 4. The assigments were well done for the most part, but some small mistakes lowered the points. You had definitely understood the core of the modelling well an executed it very nicely. However, the report could've been a bit clearer and more analytical. Still, this was a job well done.
+
+I followed the last year's grading (which was pretty strict), so grade 4 is quite good from this course. I'll send your credits for registration in the next couple of weeks. Feel free to ask if you have any questions.
+
+regards
+
+ Topi
+
+
+
+
+
+
+Ok. I didn't remember all the details of our arrangement, sorry about that. I'm not sure whether I'm allowed to give you a pass/fail grade (due to faculty guidelines...). If you wish, you can continue workin with your report and assignments 1 (you had skipped Ex. 5),  5 (Ex. 1 and 2), and 6 (Ex. 2 and 3). Altogether, you would need seven more points to achieve grade 5. Please let me know if you wish to improve your submissions.
+
+br
+
+
+Hi,
+
+Yes, the modelling excercise is technically in good shape. Justa add a few figures and some discussion about the results.
+
+Hi,
+
+I'm currently working remotely from Tampere, so meeting is somewhat problematic. However, here's a description of what is sought for in the assignments.
+
+In 5.1. (b-d) you should just make a scatter plot using tree heights and DBH. Once you add line x=y to the plot, you can see that there are some weird measurements that should not be possible.
+
+In 5.2. you should use the points function to highlight just the two measurements in the far right, i.e., the erroneus measurements.
+
+ Topi
+
+

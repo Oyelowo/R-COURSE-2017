@@ -1,0 +1,492 @@
+name = "llll""
+1==0
+1<0
+1>0
+a<- 56
+b<- 78
+a+b
+a-b
+name <- "bidemi"
+name * 3
+"bbb" * 3
+"bbb" * 3
+c(a,b)
+a/b
+a*b
+a%%b
+b%%a
+3%%2
+7%%5
+2**3
+2^3
+7%%5
+7%/%5
+347%/%36
+347%%36
+11:22
+22:1
+1:200
+C(1,2,5,3)
+A<-'C(1,2,5,3)
+A<-c(1,2,5,3)
+c(1,2,5,3)
+A<-c(1,2,5,3)
+a<-c(1,2,5,3)
+a
+b<-c(7,6,a)
+b''
+b
+9
+0
+11
+a<-c(2,5,3)
+a
+b<-c(a,a)
+b
+c(6,7,8)
+seq(3,66, by=2)
+seq(3,66, by=2)
+a<-c(4, 5, 33)
+b<-c(-48, 0, 45)
+c<-c(7, 3, 1)
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+a<-c(4, 5, 33)
+b<-c(-48, 0, 45)
+c<-c(7, 3, 1)
+a<-c(4, 5, 33)
+b<-c(-48, 0, 45)
+c<-c(7, 3, 1)
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+m
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = FALSE)
+m
+m=matrix(c(a,b,c), ncol=3, nrow = 3)
+m
+, byrow = TRUE
+, byrow = TRUE
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+m
+m=matrix(c(a,b,c))
+m
+, ncol=3, nrow = 3, byrow = TRUE
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+m
+m=matrix(c(a,b,c), ncol=3, nrow = 2, byrow = TRUE)
+m
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+m
+set.seed(1)
+rmatrix  <-  matrix(m)
+dimnames(m) <- list(rownames(rmatrix, do.NULL = FALSE, prefix = "row"),
+colnames(rmatrix, do.NULL = FALSE, prefix = "col"))
+rmatrix  <-  matrix(m)
+dimnames(m) <- list(rownames(m, do.NULL = FALSE, prefix = "row"),
+colnames(m, do.NULL = FALSE, prefix = "col"))
+rmatrix
+(
+(
+rownames(m) <- paste('name', 1:3)
+rownames(m) <- paste('name', 1:3)
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+m
+rownames(m) <- paste('name', 1:3)
+rownames(m)
+rownames(m) <- c("r1","r2","r3")
+m
+colnames(m) <- c("A", "B", "C")
+m
+seq(1:4)
+seq(rep(4),1:4)
+rep(1:4, rep(4,4))
+rep(0:4, rep(4,4))
+rep(1:4, rep(4,4))
+rep(0:4, rep(5,5))
+rep(0:4, rep(5,4))
+rep(0:4, rep(5,5))
+rep(0:4, rep(4,5))
+rep(0:4, rep(2,5))
+rep(0:4, rep(4,5))
+rep(0:4, rep(5,5))
+seq(0:4)
+rep(0:4, each=5)
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+seq(0:4)
+rep(seq(1:4), each=4)
+rep(seq(0:4), each=4)
+rep(seq(0:4), each=4)
+rep(seq(0:5), each=4)
+rep((seq(0:4)), each=4)
+y <- seq(0:4)
+y
+rep(y, each=4)
+rep(y)
+rep(y, rep(5,5))
+rep(0:4, rep(5,5))
+rep(1:5, rep(5,5), length.out=16)
+rep(1:5, rep(5,5))
+rep(1:5, rep(5,5), length.out=25)
+rep(y, rep(5,5), length.out=25)
+rep(seq(0:4), rep(5,5), length.out=25)
+obs <- c(11.1, 10.6, 6.3, 8.8, 10.7, 11.2, 8.9, 12.2)
+mean(solar.radiation)
+solar.radiation <- c(11.1, 10.6, 6.3, 8.8, 10.7, 11.2, 8.9, 12.2)
+mean(solar.radiation)
+median(solar.radiation)
+variance(solar.radiation)
+var(solar.radiation)
+sr10 = solar.radiation + 10
+sr10
+mean(sr10)
+median(sr10)
+var(sr10)
+srm2=solar.radiation * 2
+srm2
+mean(srm2)
+median(srm2)
+var
+var(srm2)
+srm2=solar.radiation * -2
+srm2
+mean(srm2)
+median(srm2)
+var(srm2)
+runif(25, 1, 100)
+ceiling(runif(25, 1, 100))
+ceiling(runif(25, 1, 100))
+ceiling(runif(25, 1, 100))
+ceiling(runif(25, min=1, 100))
+ceiling(runif(25, min=1, max=100))
+rand=ceiling(runif(25, 1, 100))
+rand
+c(rand, ncol=5, nrow=5, nrow=T)
+c(rand, ncol=5, nrow=5, byrow=T)
+rand, ncol=5, nrow=5, byrow=T
+ceiling(runif(25, 1, 100), ncol=5, nrow=5, byrow=T)
+matrix(ceiling(runif(25, 1, 100), ncol=5, nrow=5, byrow=T))
+matrix(rand, ncol=5, nrow=5, byrow=T))
+matrix(rand, ncol=5, nrow=5, byrow=T)
+rownames(r1,r2,r3,r4,r5)
+rownames(rand) <- c(r1,r2,r3,r4,r5)
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+rownames(mat) <- c(r1,r2,r3,r4,r5)
+rownames(mat) <- c(r1,r2,r3,r4,r5)
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+rownames(mat) <- c(r1,r2,r3,r4,r5)
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+mat - mat.minimum
+mat - mat.min
+mat - rand.min
+rand=ceiling(runif(25, 1, 100))
+rand
+sum(mat)
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+mat - min(mat)
+mat - min(mat)
+rand=ceiling(runif(25, 1, 100))
+rand
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+mat - min(mat)
+character(4)
+print.matrix(mat, rowlab=character(0), collab=character(0),
+3,4
+c(3,4)
+c[3,4]
+mat[4,3]
+rand=ceiling(runif(25, 1, 100))
+rand
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+mat - min(mat)
+mat[4,3]
+rand=ceiling(runif(25, 1, 100))
+rand
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+mat2=mat - min(mat)
+mat2[4,3]
+rand=ceiling(runif(25, 1, 100))
+rand
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+mat2=mat - min(mat)
+mat2
+mat2[4,3]
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+a<-c(4, 5, 33)
+b<-c(-48, 0, 45)
+c<-c(7, 3, 1)
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+m
+m[2,2]
+m[2,3]
+m
+rownames(m) <- c("r1","r2","r3")
+colnames(m) <- c("A", "B", "C")
+m
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(1:5, rep(5,5), length.out=25)
+rep(seq(0:4), rep(5,5), length.out=25)
+solar.radiation <- c(11.1, 10.6, 6.3, 8.8, 10.7, 11.2, 8.9, 12.2)
+mean(solar.radiation)
+median(solar.radiation)
+var(solar.radiation)
+sr10 = solar.radiation + 10
+sr10
+mean(sr10)
+median(sr10)
+var(sr10)
+srm2=solar.radiation * -2
+srm2
+mean(srm2)
+median(srm2)
+var(srm2)
+rand=ceiling(runif(25, 1, 100))
+rand
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+mat2=mat - min(mat)
+mat2
+mat2[4,3]
+plot(mat)
+plot(mat2)
+plot(m)
+hist(m)
+hist(mat)
+hist(mat)
+hist(mat)
+hist(mat, col=red)
+a<-c(4, 5, 33)
+b<-c(-48, 0, 45)
+c<-c(7, 3, 1)
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+m
+rownames(m) <- c("r1","r2","r3")
+colnames(m) <- c("A", "B", "C")
+m
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(1:5, rep(5,5), length.out=25)
+rep(seq(0:4), rep(5,5), length.out=25)
+solar.radiation <- c(11.1, 10.6, 6.3, 8.8, 10.7, 11.2, 8.9, 12.2)
+mean(solar.radiation)
+median(solar.radiation)
+var(solar.radiation)
+sr10 = solar.radiation + 10
+sr10
+mean(sr10)
+median(sr10)
+var(sr10)
+srm2=solar.radiation * -2
+srm2
+mean(srm2)
+median(srm2)
+var(srm2)
+rand=ceiling(runif(25, 1, 100))
+rand
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+mat2=mat - min(mat)
+mat2
+mat2[4,3]
+all(1:6 %in% 0:36)
+print(match(5, c(1,2,9,5,3,6,7,4,5)))
+print(c(1,2,9,5,3,6,7,4,5))
+print(match(5, c(1,2,5,3,6,7,4,5)))
+print(match(5, c(1,2,9,3,6,7,4,5)))
+oo = c(1,2,9,5,3,6,7,4,5)))
+oo = c(1,2,9,5,3,6,7,4,5))
+oo = c(1,2,9,5,3,6,7,4,5)
+for (i in oo){
+print(match(5, i))
+}
+for (i in oo){
+print(5%in%i)
+}
+oo = c(1,2,9,5,3,6,7,4,5)
+for (i in oo){
+print(match(5, i))
+}
+for (i in oo){
+print(match(5, i), nomatch=lowo)
+}
+for (i in oo){
+print(match(5, i), nomatch="lowo")
+}
+oo = c(1,2,9,5,3,6,7,4,5)
+for (i in oo){
+print(match(5, i), nomatch="lowo")
+}
+for (i in oo){
+print(match(5, i, nomatch="lowo"))
+}
+for (i in oo){
+print(match(5, i, nomatch=lowo))
+}
+print(match(5, i, nomatch=3))
+for (i in oo){
+print(match(5, i, nomatch=3))
+}
+for (i in oo){
+print(match(5, i, nomatch=p))
+}
+for (i in oo){
+print(match(5, i, nomatch=0))
+}
+for (i in 1:10) {
+if (!i %% 2){
+next
+}
+print(i)
+}
+oo = c(1,2,9,5,3,6,7,4,5,1,2,9,5,3,6,7,4,5,1,2,9,5,3,6,7,4,5)
+for (i in oo){
+print(match(5, i, nomatch=0))
+}
+for (i in oo){
+print(match(5, i, nomatch=NA_integer_))
+}
+for (i in oo){
+print(match(!5, i, nomatch=NA_integer_))
+}
+print(match(!5, i, nomatch=0))
+for (i in oo){
+print(match(!5, i, nomatch=0))
+}
+for (i in oo){
+print(match(5, i, nomatch=0))
+next
+print(i)
+}
+for (i in oo){{
+print(match(5, i, nomatch=0))
+next
+}
+print(i)
+}
+#clear memory
+rm(list = ls())
+setwd("C:/Users/oyeda/Desktop/R_COURSE/assignment5")
+#load the data
+data<-read.table("puudata.txt", header = T, sep = "\t")
+#Exercise 1
+#a) Plot the height of living crown (ELAVALARAJA) as a function of
+#height (PITUUS). Try using dots and lines. Which one is better?
+plot(data$PITUUS, data$ELAVALARAJA, type = "p")
+plot(data$PITUUS, data$ELAVALARAJA, type = "l")
+#The dots plot is better.
+#b) Exclude the incorrect data entries (height of living crown
+#over 40 meters) out of the picture by changing limits of x- and y-axis.
+?plot
+plot(data$PITUUS, data$ELAVALARAJA, type = "p", ylim = c(0,40))
+plot(ELAVALARAJA~PITUUS, data=data,   ylim=c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#?~
+#c) Give proper names for both of the axes
+plot(data$PITUUS, data$ELAVALARAJA, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#d) Add a line x = y to the picture. How would you describe the
+#observation on the line? What about on top of the line?
+###########################################################
+#?abline
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$PITUUS~data$ELAVALARAJA,data=data)
+fit <- glm(ELAVALARAJA~PITUUS, data = data)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+#lm.elav<-lm(ELAVALARAJA~PITUUS, data = data)
+#or
+#lm.elav<-lm(data$ELAVALARAJA ~ data$PITUUS)
+#abline(lm.elav, col="green", lwd=3)  #lwd is for the line thickness
+#or this
+#abline(coef = coef(lm.elav))
+#or this
+#abline(coef(lm.elav, lwd=2))
+#The values below the line are the outliers, while those are
+#those that fit
+###################################################
+#NB: this solution was found but does not seem right, remember to
+#delete.
+#lines(x=data$ELAVALARAJA, y = data$PITUUS, type = "l", col="green")
+#plot(data$PITUUS~data$ELAVALARAJA,data=data,reset.par=FALSE)
+#k <- 1
+#for (i in 1:2) {
+#  for (j in 1:2) {
+#    par(mfg=c(i,j,2,2))
+#    abline(0,1,lwd=3,col=k)
+#    k <- k+1
+#  }
+#}
+#abline(0,1, lwd= 2, col="red")
+#Exercise 2
+#a) Plot height of the birches (PUULAJI=3) in the first canopy cover
+#layer as a function of the tree diameter.
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(p1$LPM, p1$PITUUS)
+or
+plot(p1$PITUUS~p1$LPM, col="green")
+#or
+plot(PITUUS~LPM, p1)
+#b) Change the picture so that the observations are drawn as green circles with black border.
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+#c) Change the style of the two differing observations as red triangles with black border
+#(form a new subset and draw it with points function)
+p2<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#Exercise 3 Exercise 2 continues.
+#a) Add line y=250 to the picture. Determine the color
+#as red and the line width as 2.
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+#c) Add a line that travels through origin (point (0,0))
+#and has slope value of 1.1. Use dashed
+#line type and choose some nice color (available colors
+#can be found with command colors()).
+abline(a=0, b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+#d) Add a text into the formed rectangle (on lower right corner) that says "Erroneous
+#observations".
+mtext("Use the mtext() function")
+temp <- locator(1) # On the chart, click where you would like the text to appear

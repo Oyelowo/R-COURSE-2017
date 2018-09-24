@@ -1,0 +1,512 @@
+#---
+#  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#Residual standard error: 14.51 on 216 degrees of freedom
+#(336 observations deleted due to missingness)
+#Multiple R-squared:  0.8759,	Adjusted R-squared:  0.8702
+#F-statistic: 152.5 on 10 and 216 DF,  p-value: < 2.2e-16
+#from the above, I can eliminate Hmean, h50, h90, p30, p50, p70 and p90
+#model can then be:  h_dm~ Hmax + h30 + h70
+#next, use stepwise regression to eliminate the redundant variables:
+step_h <- stepAIC(linfit_h, direction = ("both"))
+step_h$anova #display results
+#final model: h_dm ~ Hmax + h30 + h50 + h70 + p50 + p70
+#cor(linden1[,"dbh_mm"],linden[,4:13])
+##################################################################
+#subset the dataframe to vaahtera species
+maple1 <- data1[data1$puulaji == "vaahtera", ]
+#multiple linear regression, using all the variables
+mapfit_dbh <- lm(dbh_mm ~ Hmax + Hmean + h30 + h50 + h70 + h90 + p30
++ p50 + p70 + p90, maple1)
+#get the summary details
+summary(mapfit_dbh)
+#Perform a stepwise regression to remove the redundant variables
+m_step_dbh <- stepAIC(mapfit_dbh, direction = ("both"))
+m_step_dbh$anova #display results
+#Final Model based on the chosen variables by stepwise regression:
+#  dbh_mm ~ h30 + p90 + h90
+#######################################################
+#Linear model using all the variables
+mapfit_h <- lm(h_dm ~ Hmax + Hmean + h30 + h50 + h70 + h90 + p30
++ p50 + p70 + p90, maple1)
+summary(mapfit_h)
+#Stepwise regression
+m_step_h <- stepAIC(mapfit_h, direction = ("both"))
+m_step_h$anova #display results
+#Final Model chosen after using the pvalues and stepwise regression:
+#  h_dm ~ h30 + h50 + h70
+##- Create linear models for diameter and height of linden
+#and maple (four different models).
+##FOR LINDEN
+#dbh_mm ~ Hmax + Hmean + h30 + h70 + p50 + h90 + p90
+#h_dm ~ Hmax + h30 + h50 + h70 + p50 + p70
+##FOR MAPLE
+#dbh_mm ~ h30 + p90 + h90
+#h_dm ~ h30 + h50 + h70
+###Final creation of models based on the chosen predictors
+##LINDEN
+#for diameter at breast height(DBH)
+lindbh_model <- lm(dbh_mm ~ Hmax + Hmean + h30 + h70
++ p50 + h90 + p90, linden1)
+lindbh_coef <- coef(lindbh_model) #extract the coefficients
+#model for height for linden species
+linh_model <-
+lm(h_dm ~ Hmax + h30 + h50 + h70 + p50 + p70, linden1)
+linh_coef <- coef(linh_model) #extract the coefficients
+#MAPLES
+#model for diameter at breast height(DBH) of maple
+mapdbh_model <- lm(dbh_mm ~ Hmax + Hmean + h30 + h70 + p50
++ h90 + p90, maple1)
+mapdbh_coef <- coef(mapdbh_model) #extract the coefficients
+#model for height of maple
+maph_model <- lm(h_dm ~ h30 + h50 + h70, maple1)
+maph_coef <- coef(maph_model) #extract the coefficients
+#create function for calculating the DBH of linden, by using the model
+lin_DBH_fun <-
+function(Hmax , Hmean , h30 , h70 , p50 , h90 , p90) {
+lindbh_mod <-
+round((
+lindbh_coef[1] + (lindbh_coef[2] * Hmax) + (lindbh_coef[3] * Hmean) +
+(lindbh_coef[4] * h30) + lindbh_coef[5] * h70 + lindbh_coef[6] * p50
++ (lindbh_coef[7] * h90) + (lindbh_coef[8] * p90)
+),
+2)
+return(lindbh_mod)
+}
+#function for calculating the Height of linden, by using the model
+lin_H_fun <- function(Hmax,  h30 , h50, h70, p50, p70) {
+linh_mod <- round((
+linh_coef[1] + (linh_coef[2] * Hmax) +
+(linh_coef[3] * h30) + linh_coef[4] * h50 + linh_coef[5] *
+h70 + linh_coef[6] * p50
++ (linh_coef[7] * p70)
+),
+2)
+return(linh_mod)
+}
+#create function for calculating the DBH of maple, by using the model
+map_DBH_fun <-
+function(Hmax , Hmean , h30 , h70 , p50 , h90 , p90) {
+mapdbh_mod <-
+round((
+mapdbh_coef[1] + (mapdbh_coef[2] * Hmax) + (mapdbh_coef[3] * Hmean) +
+(mapdbh_coef[4] * h30) + mapdbh_coef[5] * h70 + mapdbh_coef[6] * p50
++ (mapdbh_coef[7] * h90) + (mapdbh_coef[8] * p90)
+),
+2)
+return(mapdbh_mod)
+}
+#create function for calculating the Height of Maple, by using the model
+map_H_fun <- function(h30 , h50, h70) {
+maph_mod <- round((
+maph_coef[1] + (maph_coef[2] * h30)
++ maph_coef[3] * h50 + maph_coef[4] * h70
+), 2)
+return(maph_mod)
+}
+#data2[1,]
+#Create a loop to predict the heigt and dbh of maple and linden
+#by using the created models
+{
+dbh_ln <- h_ln <- dbh_map <- h_map <- puunro <- puulaji <- c()
+for (i in 1:nrow(data2)) {
+if (data2$puulaji[i] == "lehmus") {
+dbh_ln <- append(
+dbh_ln,
+lin_DBH_fun(
+data2$Hmax[i] ,
+data2$Hmean[i]
+,
+data2$h30[i] ,
+data2$h70[i] ,
+data2$p50[i]
+,
+data2$h90[i] ,
+data2$p90[i]
+)
+)
+h_ln <-
+append(
+h_ln,
+lin_H_fun(
+data2$Hmax[i] ,
+data2$h30[i] ,
+data2$h50[i] ,
+data2$h70[i]
+,
+data2$p50[i] ,
+data2$p70[i]
+)
+)
+puunro <- append(puunro, data2$Puunro[i])
+puulaji <- append(puulaji, as.character(data2$puulaji[i]))
+}
+#here, I can also use  else alone instead of if (data2$puulaji[i] == "vaahtera")
+if (data2$puulaji[i] == "vaahtera") {
+dbh_map <-
+append(dbh_map, (
+map_DBH_fun(
+data2$Hmax[i] ,
+data2$Hmean[i],
+data2$h30[i]
+,
+data2$h70[i] ,
+data2$p50[i],
+data2$h90[i] ,
+data2$p90[i]
+)
+))
+h_map <-
+append(h_map, (map_H_fun(data2$h30[i] , data2$h50[i] , data2$h70[i])))
+puunro <- append(puunro, data2$Puunro[i])
+puulaji <- append(puulaji, as.character(data2$puulaji[i]))
+}
+}
+#combine the  dbh and height vectors created for linden column-wise
+a <- cbind(dbh_ln, h_ln)
+#combine the  dbh and height vectors created for maple column-wise
+b <- cbind(dbh_map, h_map)
+#now, combine both data but row_wise since we want them to be merged
+c <- rbind(a, b)
+#finally, add the plot number and names of the species which are
+#vectors created earlier for the entire data
+maple_linden <- cbind.data.frame(puunro, puulaji, c)
+#reset the index/rownames to default index
+rownames(maple_linden) <- NULL
+#rownames(maple_linden)<-rownames(maple_linden, do.NULL=T, prefix = "Obs.")
+#rename columns one and two
+colnames(maple_linden)[colnames(maple_linden)=="dbh_ln"] <- "DBH"
+colnames(maple_linden)[colnames(maple_linden)=="h_ln"] <- "height"
+#names(maple_linden)[1]<-"DBH"  #wont use this cos column number might change
+#names(maple_linden) = c("DBH", "height")
+}
+# create a more advanced plot matrix with ggpairs()
+p2 <- ggpairs(maple_linden, mapping = aes(col=maple_puulaji, alpha=0.3), lower = list(combo = wrap("facethist", bins = 20)))
+#draw the plot
+p2
+#write the data into csv format
+write.csv(maple_linden, file = "C:/Users/oyeda/Desktop/R_COURSE/modelling/Trees_DBH_H"
+, row.names = TRUE)
+#NOTE: THERE ARE SIMPLER APPROACHES TO CALCULATING THE HEIGHT AND
+#DBH INTO NEW COLUMNS E.G DATA$DBH<- FORUMA(USING NECESSARY COLUMNS).
+#BUT I CHOSE TO TRY OUT LOOPING, BINDING AND APPENDING.
+d1<-data1[, c("puulaji","Hmax", "Hmean", "h30", "h50", "h70", "h90", "p30"
+, "p50", "p70", "p90")]
+d1<-data1[, c("puulaji","Hmax", "Hmean", "h30", "h50", "h70", "h90", "p30"
+, "p50", "p70", "p90")]
+# create a more advanced plot matrix with ggpairs()
+p <- ggpairs(d1, mapping = aes(col=puulaji, alpha=0.3), lower = list(combo = wrap("facethist", bins = 20)))
+# draw the plot
+p
+plot(data$PITUUS ~ data$ELAVALARAJA, type = "p")
+#load the data
+data<-read.table("puudata.txt", header = T, sep = "\t")
+#clear memory
+rm(list = ls())
+setwd("C:/Users/oyeda/Desktop/R_COURSE/assignment5")
+#load the data
+data<-read.table("puudata.txt", header = T, sep = "\t")
+#Exercise 1
+#a) Plot the height of living crown (ELAVALARAJA) as a function of
+#height (PITUUS). Try using dots and lines. Which one is better?
+plot(data$PITUUS ~ data$ELAVALARAJA, type = "p")
+#Exercise 1
+#a) Plot the height of living crown (ELAVALARAJA) as a function of
+#height (PITUUS). Try using dots and lines. Which one is better?
+plot(data$ELAVALARAJA~data$PITUUS,  type = "p")
+plot(data$ELAVALARAJA,~data$PITUUS, type = "l")
+plot(data$ELAVALARAJA~data$PITUUS, type = "l")
+plot(data$PITUUS ~ data$ELAVALARAJA, type = "p", ylim = c(0,400))
+plot(data$ELAVALARAJA~data$PITUUS, type = "p", ylim = c(0,400))
+plot(ELAVALARAJA~PITUUS , data=data,   xlim=c(0,400),
+xlab = "Height", ylab = "Height Living Crown")
+plot(ELAVALARAJA~PITUUS , data=data,   ylim=c(0,400),
+xlab = "Height", ylab = "Height Living Crown")
+#c) Give proper names for both of the axes
+plot(data$ELAVALARAJA~data$PITUUS, type = "p", ylim = c(0,400),
+xlab = "Height", ylab = "Height Living Crown")
+#d) Add a line x = y to the picture. How would you describe the
+#observation on the line? What about on top of the line?
+###########################################################
+#?abline
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(ELAVALARAJA~PITUUSdata=data, type = "p", ylim = c(0,400),
+xlab = "Height", ylab = "Height Living Crown")
+#d) Add a line x = y to the picture. How would you describe the
+#observation on the line? What about on top of the line?
+###########################################################
+#?abline
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(ELAVALARAJA~PITUUS, data=data, type = "p", ylim = c(0,400),
+xlab = "Height", ylab = "Height Living Crown")
+fit <- lm(LAVALARAJA~PITUUS, data = data)
+fit <- lm(ELAVALARAJA~PITUUS, data = data)
+abline(fit, col="red", lwd=2)
+#Exercise 2
+#a) Plot height of the birches (PUULAJI=3) in the first canopy cover
+#layer as a function of the tree diameter.
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(PITUUS ~ LPM, data=p1)
+#b) Change the picture so that the observations are drawn as green circles with black border.
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+#c) Change the style of the two differing observations as red triangles with black border
+#(form a new subset and draw it with points function)
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#Exercise 3 Exercise 2 continues.
+#a) Add line y=250 to the picture. Determine the color
+#as red and the line width as 2.
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+?abline
+#Exercise 3 Exercise 2 continues.
+#a) Add line y=250 to the picture. Determine the color
+#as red and the line width as 2.
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+#?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+#c) Add a line that travels through origin (point (0,0))
+#and has slope value of 1.1. Use dashed
+#line type and choose some nice color (available colors
+#can be found with command colors()).
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using
+#functions
+text_corner(text="Erroneous observations", position= "bottomright")
+#canopy cover layer as a function of stem diameter.
+pines_canopy1 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==1)
+pines_canopy2 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==2)
+#plot height as a function of stem diameter
+{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+main="Height vs Stem diameter",col="blue")
+#alternatives
+#plot(data$LPM, data$PITUUS)
+#plot(data$PITUUS ~ data$LPM)
+par(new=T)
+plot(PITUUS ~ LPM, pines_canopy2, xlim=c(min(pines_canopy1$LPM),
+max(pines_canopy1$LPM)), xlab=NA, ylab=NA,
+ylim=c(min(pines_canopy1$PITUUS),max(pines_canopy1$PITUUS)),
+col="red")
+legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+col=c("blue", "red"), pch = 1, cex=0.8)
+#instead of using bottomright, a coordinate for the legend can
+#also be used. e,g 410, 190
+}
+#c) Change the style of the two differing observations as red triangles with black border
+#(form a new subset and draw it with points function)
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#b) Change the picture so that the observations are drawn as green circles with black border.
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+#c) Change the style of the two differing observations as red triangles with black border
+#(form a new subset and draw it with points function)
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#c) Change the style of the two differing observations as red triangles with black border
+#(form a new subset and draw it with points function)
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#b) Change the picture so that the observations are drawn as green circles with black border.
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+#c) Change the style of the two differing observations as red triangles with black border
+#(form a new subset and draw it with points function)
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+plot(data$ELAVALARAJA~data$PITUUS,  type = "p")
+plot(data$ELAVALARAJA~data$PITUUS, type = "l")
+plot(p2$LPM, p2$PITUUS, ylab = "Height",xlab = "DBH", pch = 24, col ="black", bg = "red")
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+#?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+# Add text
+# Add text using the following Corner_text function:
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using
+#functions
+text_corner(text="Erroneous observations", position= "bottomright")
+{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+main="Height vs Stem diameter",col="blue")
+#alternatives
+#plot(data$LPM, data$PITUUS)
+#plot(data$PITUUS ~ data$LPM)
+par(new=T)
+plot(PITUUS ~ LPM, pines_canopy2, xlim=c(min(pines_canopy1$LPM),
+max(pines_canopy1$LPM)), xlab=NA, ylab=NA,
+ylim=c(min(pines_canopy1$PITUUS),max(pines_canopy1$PITUUS)),
+col="red")
+legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+col=c("blue", "red"), pch = 1, cex=0.8)
+#instead of using bottomright, a coordinate for the legend can
+#also be used. e,g 410, 190
+}
+#alternatively, this can be done by plotting for the first,
+#and basically adding points from the second data
+{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+main="Height vs Stem diameter",col="blue")
+points(pines_canopy2$LPM, pines_canopy2$PITUUS, pch=1, col="red")
+# Add a legend
+legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+col=c("blue", "red"), pch = 1, cex=0.8)
+}
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+#c) Change the style of the two differing observations as red triangles with black border
+#(form a new subset and draw it with points function)
+p2<-p1[p1["LPM"]>600,]
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#Exercise 3 Exercise 2 continues.
+#a) Add line y=250 to the picture. Determine the color
+#as red and the line width as 2.
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+#?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+#c) Add a line that travels through origin (point (0,0))
+#and has slope value of 1.1. Use dashed
+#line type and choose some nice color (available colors
+#can be found with command colors()).
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+#d) Add a text into the formed rectangle (on lower right corner) that says "Erroneous
+#observations".
+# Add text
+# Add text using the following Corner_text function:
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using
+#functions
+text_corner(text="Erroneous observations", position= "bottomright")
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+p2<-p1[p1["LPM"]>600,]
+#points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+plot(p2$LPM, p2$PITUUS, ylab = "Height",xlab = "DBH", pch = 24, col ="black", bg = "red")
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+#?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+# Add text
+# Add text using the following Corner_text function:
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using
+#functions
+text_corner(text="Erroneous observations", position= "bottomright")
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+#points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+plot(p2$LPM, p2$PITUUS, ylab = "Height",xlab = "DBH", pch = 24, col ="black", bg = "red")
+#points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+points(p2$LPM, p2$PITUUS, ylab = "Height",xlab = "DBH", pch = 24, col ="black", bg = "red")
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+p2<-p1[p1["LPM"]>600,]
+#points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+points(p2$LPM, p2$PITUUS, ylab = "Height",xlab = "DBH", pch = 24, col ="black", bg = "red")
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+#?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+# Add text
+# Add text using the following Corner_text function:
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using
+#functions
+text_corner(text="Erroneous observations", position= "bottomright")
+#FOR 215
+#Assignment 6 (turn in via Moodle by Thursday 6.10. 10:00 am)
+#puudata.xls is used in every exercise
+#clear memory
+rm(list = ls())
+setwd("C:/Users/oyeda/Desktop/R_COURSE/assignment6")
+#load the data
+data<-read.table("puudata.txt", header = T, sep = "\t")
+#Exercise 1
+#Construct a linear height model for spruces (PUULAJI = 2) in the
+#first canopy cover layer. Use
+#diameter (LPM) as an explanatory variable. Report the model's
+#parameters, coefficient of
+#determination, and residual error. Report also the p-value
+#of the explanatory variable.
+spruceCanopy1 <- subset(data, data$PUULAJI==2 & data$LATVKERROS==1)
+lm_fit = lm(formula= PITUUS~LPM, data=spruceCanopy1)
+summary(lm_fit)
+names(lm_fit)
+#Exercise 2
+#Exercise 1 continues.
+#Plot the model's residual error as a function of diameter.
+#Does the variance change as diameter grows?
+res =residuals(lm_fit)
+plot(res~ spruceCanopy1$LPM)
+#Exercise 3
+#Exercise 1 continues.
+#Plot the height of spruces in the first canopy
+#layer as a function of diameter. Add a red curve
+#to the picture that illustrates the values
+#predicted with the model.
+spr1<- data[data["LATVKERROS"]==1,]
+plot(PITUUS~LPM, spr1)
+lines(lowess(spr1$LPM, spr1$PITUUS), col="red")
+plot(PITUUS~LPM, spr1, which(data[data["LATVKERROS"]==1,]))
+plot(PITUUS~LPM, spr1, which(data["LATVKERROS"]==1)
+)
+#Exercise 3
+#Exercise 1 continues.
+#Plot the height of spruces in the first canopy
+#layer as a function of diameter. Add a red curve
+#to the picture that illustrates the values
+#predicted with the model.
+spr1<- data[data["LATVKERROS"]==1,]
+plot(PITUUS~LPM, spr1)
+lines(lowess(spr1$LPM, spr1$PITUUS), col="red")
+res =residuals(lm_fit)
+plot(res~ spruceCanopy1$LPM)
+res =residuals(lm_fit)
+plot(res~ spruceCanopy1$LPM)
+{oldpar <- par(mfrow = c(2, 2))
+plot(lm_fit)
+par(oldpar)}
+spr1<- data[data["LATVKERROS"]==1,]
+plot(PITUUS~LPM, spr1)
+lines(lowess(spr1$LPM, spr1$PITUUS), col="red")
+#abline(lm_fit, col="purple")
+#or
+#abline(coef = coef(lm_fit), col="red")

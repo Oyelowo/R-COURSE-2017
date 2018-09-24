@@ -1,0 +1,43 @@
+species 1= pine
+species 2 = spruces
+
+
+Puulajikoodit / Codes for tree species
+1 = Mänty / pine
+2 = Kuusi / spruce
+3 = Rauduskoivu / silver birch
+4 = Hieskoivu / downy birch
+5 = Haapa / trembling aspen
+6 = Harmaaleppä / gray alder
+7 = Tervaleppä / black alder
+
+
+
+
+
+latvuskerros (crown layer) 
+puulaji (tree species) 
+
+Column name 
+LPM stands for diameter, 
+ELAVALARAJA stands for the lower limit of living canopy and,
+LATVUSLEV stands for width of the canopy
+PITUUS  is height
+
+
+
+Explanatory variables in koepuut.xlsx
+X = x-coordinate of the highest echo
+Y = y-coordinate of the highest echo
+Hmax = height of the highest echo
+Hmean = mean height of echoes
+h30 = 30 % height percentile (30 % of the pulses have reflected at this height or below)
+h50 =50 % height percentile
+h70 = 70 % height percentile
+h90 = 90 % height percentile
+p30 = 30 % relative height percentile (same as above but the height is relative to Hmax)
+p50 = 50 % relative height percentile
+p70 = 70 % relative height percentile
+p90 = 90 % relative height percentile
+dbh_mm = diameter at breast height in millimeters
+h_dm = tree height in decimeters 

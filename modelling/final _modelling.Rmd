@@ -1,0 +1,387 @@
+---
+title: "Modelling of DBH and height of Maple and Linden"
+author: 'Oyedayo Oyelowo,     student number: 014717208'
+date: "1 November 2017"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+course: FOR 215
+Final exercise: modelling task
+---
+
+Task is to create regression models for diameter and
+height of linden (lehmus) and maple
+(vaahtera). Laser scanning-based features are used as
+explanatory variables. 
+Data:
+Modeling data (koepuut.xlsx):
+The file contains 1138 trees from the test area. DBH and
+species (puulaji) have been determined
+from every tree. In addition, height is known for about
+half of the trees. 10 ALS metrics have been
+calculated for each tree. The data contains several
+tree species.
+Trees with no measured DBH and height (mallinnettavat.xlsx):
+10 ALS metrics have been calculated for each tree. DBH
+and height are predicted with models. The
+data consists of linden and maples.
+
+Fork flow:
+  Creating the models with modelling data
+- Separate linden and maples from the data (there are
+also other species in the modelling  data).
+
+ Choose (by testing) best predictors from ALS features
+for each model (best features may vary between species).
+
+##***Predicting variables***
+- Form your own functions that utilize the created models
+ models' explanatory variables are used as parameters
+for the functions
+- Form a loop structure that runs through all trees in
+mallinnettavat.txt and calls for the
+correct functions according to tree species
+save the predicted diameter (mm) and height (dm) values
+for example in dbh and h vectors
+- Create a result matrix that contains the following columns:
+tree number (Puunro), tree species (puulaji), dbh in cm and height in m
+- Export the matrix into csv file
+
+
+
+In this mini-project, I will be performing a multiple regression analysis to predict the dbh and height. I will be using the lm function in R. However, there are other more efficient models that can deal with e.g multucollinearity and homoscedacity better. Such include generalized linear model(GLM), generalised additive model(GAM) and general boosting model(GBM)/BRT. These models give the options to deal with binomial distribution and count data with poisson distribution. This is because, in many cases, we deal with data with non-normally distributed error. Packaages that can be used in r include "mgcv", "gbm", "glm", "dismo" etc. 
+It is also possitble to use higher order polynomial and also look at interactions between variables. GAM also gives the opportunity to see the response curves.
+
+However, for simpplicity,  I will be using  the lm(linear model) function in R and just the first order polynomials. It is also possible to test the prediction of te model by dividing the data into 70:30 training and testing data or using the leave one out method. AFterwards, correlation can be used to see how related the predictd is to the observed.  AUC curves can also be compared by using the wilcox test.
+To make it simple, I will be doin the prediction alone as requested in this exercise.
+```{r, message=FALSE, warning=FALSE}
+rm(list = ls())
+
+setwd("C:/Users/oyeda/Desktop/R_COURSE/modelling")
+
+#load the data
+data1 <- read.table("koepuut.txt", header = T, sep = "\t")
+data2 <- read.table("mallinnettavat.txt", header = T, sep = "\t")
+## NOTE: linden (lehmus) and maple (vaahtera)
+```
+
+
+The dimension and structure of both dataets
+```{r, message=FALSE, warning=FALSE}
+str(data1)
+dim(data1)
+
+str(data2)
+dim(data2)
+
+```
+
+
+Let's see how the predictors are distributed
+```{r, message=FALSE, warning=FALSE}
+library(GGally)
+library(ggplot2)
+d1<-data1[, c("Hmax", "Hmean", "h30", "h50", "h70", "h90", "p30"
+             , "p50", "p70", "p90")]
+# create a more advanced plot matrix with ggpairs()
+p <- ggpairs(d1, mapping = aes(alpha=0.3), lower = list(combo = wrap("facethist", bins = 20)))
+
+# draw the plot
+p
+```
+
+
+
+
+
+
+
+firstly, I have to use the data with some known heights to create the model for linden
+
+```{r, message=FALSE, warning=FALSE}
+linden1 <- data1[data1$puulaji == "lehmus",]
+#linear model for dbh of linden
+linfit_dbh <- lm(dbh_mm ~ Hmax + Hmean + h30 + h50 + h70 + h90 + p30
+                 + p50 + p70 + p90, linden1)
+summary(linfit_dbh)
+```
+
+from the above, we can take away  h50, p30, and p70, because,
+*they all have p values above 0.05
+*thus, i'm left with _dbh_mm ~ Hmax + Hmean + h30 + h70 + p50 + h90 + p90_
+
+To further corroborate this, I used a stepwise regression next
+
+```{r, message=FALSE, warning=FALSE}
+# Stepwise Regression
+library(MASS)
+linfit_dbh <- lm(dbh_mm ~ Hmax + Hmean + h30 + h50 + h70 + h90 + p30
+                 + p50 + p70 + p90, linden1)
+#?stepAIC
+step <- stepAIC(linfit_dbh, direction = "both")
+step$anova # display results
+```
+
+__The result of the analaysis confirms earlier the choice
+made earlier. Thus, my final model for dbh for linden would be:__
+$dbh_mm =a + b_1Hmax + b_2Hmean + b_4h30 + b_5h70 + b_6p50 + b_7h90 + b_8p90$
+
+###_Next is for the height_
+```{r, message=FALSE, warning=FALSE}
+linden1 <- data1[data1$puulaji == "lehmus",]
+#linear model for dbh of linden
+linfit_h <- lm(h_dm ~ Hmax + Hmean + h30 + h50 + h70 + h90 + p30
+               + p50 + p70 + p90, linden1)
+summary(linfit_h)
+```
+from the above, I can eliminate Hmean, h50, h90, p30, p50, p70 and p90. Model can then be:  $h_dm = a+ b_1Hmax + b_2h30 + b_3h70$
+
+#*Stepwise regression for height of linden
+```{r, message=FALSE, warning=FALSE}
+#next, use stepwise regression to eliminate the redundant variables:
+step_h <- stepAIC(linfit_h, direction = ("both"))
+step_h$anova #display results
+```
+final model: $h_dm = Hmax + h30 + h50 + h70 + p50 + p70$
+
+
+
+##multiple regression analysis and stepwise regression for Diameter At Breast Height of _Maple_
+```{r, message=FALSE, warning=FALSE}
+#subset the dataframe to vaahtera species
+maple1 <- data1[data1$puulaji == "vaahtera", ]
+
+#multiple linear regression, using all the variables
+mapfit_dbh <- lm(dbh_mm ~ Hmax + Hmean + h30 + h50 + h70 + h90 + p30
+                 + p50 + p70 + p90, maple1)
+#get the summary details
+summary(mapfit_dbh)
+
+#Perform a stepwise regression to remove the redundant variables
+m_step_dbh <- stepAIC(mapfit_dbh, direction = ("both"))
+m_step_dbh$anova #display results
+```
+
+Final Model based on the chosen variables by stepwise regression:  $dbh_mm = h30 + p90 + h90$
+
+
+#linear model and Stepwise regression for height of maple trees
+```{r, message=FALSE, warning=FALSE}
+#Linear model using all the variables
+mapfit_h <- lm(h_dm ~ Hmax + Hmean + h30 + h50 + h70 + h90 + p30
+               + p50 + p70 + p90, maple1)
+summary(mapfit_h)
+
+#Stepwise regression
+m_step_h <- stepAIC(mapfit_h, direction = ("both"))
+m_step_h$anova #display results
+```
+Final Model chosen after using the pvalues and stepwise regression:
+  h_dm ~ h30 + h50 + h70
+
+###The final models created are:
+**FOR LINDEN**
+$dbh_mm = Hmax + Hmean + h30 + h70 + p50 + h90 + p90$
+$h_dm = Hmax + h30 + h50 + h70 + p50 + p70$
+
+**FOR MAPLE**
+$dbh_mm = h30 + p90 + h90$
+$h_dm ~ h30 + h50 + h70$
+
+
+##Final creation of models based on the chosen predictors
+##LINDEN
+```{r, message=FALSE, warning=FALSE}
+#for diameter at breast height(DBH)
+lindbh_model <- lm(dbh_mm ~ Hmax + Hmean + h30 + h70
+                   + p50 + h90 + p90, linden1)
+lindbh_coef <- coef(lindbh_model) #extract the coefficients
+
+
+#model for height for linden species
+linh_model <-
+  lm(h_dm ~ Hmax + h30 + h50 + h70 + p50 + p70, linden1)
+linh_coef <- coef(linh_model) #extract the coefficients
+
+
+#MAPLES
+#model for diameter at breast height(DBH) of maple
+mapdbh_model <- lm(dbh_mm ~ Hmax + Hmean + h30 + h70 + p50
+                   + h90 + p90, maple1)
+mapdbh_coef <- coef(mapdbh_model) #extract the coefficients
+
+#model for height of maple
+maph_model <- lm(h_dm ~ h30 + h50 + h70, maple1)
+maph_coef <- coef(maph_model) #extract the coefficients
+
+```
+
+
+##Creating functions to calculate the parameters
+```{r, message=FALSE, warning=FALSE}
+#create function for calculating the DBH of linden, by using the model
+lin_DBH_fun <-
+  function(Hmax , Hmean , h30 , h70 , p50 , h90 , p90) {
+    lindbh_mod <-
+      round((
+        lindbh_coef[1] + (lindbh_coef[2] * Hmax) + (lindbh_coef[3] * Hmean) +
+          (lindbh_coef[4] * h30) + lindbh_coef[5] * h70 + lindbh_coef[6] * p50
+        + (lindbh_coef[7] * h90) + (lindbh_coef[8] * p90)
+      ),
+      2)
+    return(lindbh_mod)
+  }
+
+#function for calculating the Height of linden, by using the model
+lin_H_fun <- function(Hmax,  h30 , h50, h70, p50, p70) {
+  linh_mod <- round((
+    linh_coef[1] + (linh_coef[2] * Hmax) +
+      (linh_coef[3] * h30) + linh_coef[4] * h50 + linh_coef[5] *
+      h70 + linh_coef[6] * p50
+    + (linh_coef[7] * p70)
+  ),
+  2)
+  return(linh_mod)
+}
+
+#create function for calculating the DBH of maple, by using the model
+map_DBH_fun <-
+  function(Hmax , Hmean , h30 , h70 , p50 , h90 , p90) {
+    mapdbh_mod <-
+      round((
+        mapdbh_coef[1] + (mapdbh_coef[2] * Hmax) + (mapdbh_coef[3] * Hmean) +
+          (mapdbh_coef[4] * h30) + mapdbh_coef[5] * h70 + mapdbh_coef[6] * p50
+        + (mapdbh_coef[7] * h90) + (mapdbh_coef[8] * p90)
+      ),
+      2)
+    return(mapdbh_mod)
+  }
+
+#create function for calculating the Height of Maple, by using the model
+map_H_fun <- function(h30 , h50, h70) {
+  maph_mod <- round((
+    maph_coef[1] + (maph_coef[2] * h30)
+    + maph_coef[3] * h50 + maph_coef[4] * h70
+  ), 2)
+  return(maph_mod)
+}
+```
+
+
+
+##Loop to calculate the predictions into a dataframe
+```{r, message=FALSE, warning=FALSE}
+#Create a loop to predict the heigt and dbh of maple and linden
+#by using the created models
+{
+  dbh_ln <- h_ln <- dbh_map <- h_map <- puunro <- puulaji <- c()
+  for (i in 1:nrow(data2)) {
+    if (data2$puulaji[i] == "lehmus") {
+      dbh_ln <- append(
+        dbh_ln,
+        lin_DBH_fun(
+          data2$Hmax[i] ,
+          data2$Hmean[i]
+          ,
+          data2$h30[i] ,
+          data2$h70[i] ,
+          data2$p50[i]
+          ,
+          data2$h90[i] ,
+          data2$p90[i]
+        )
+      )
+      
+      h_ln <-
+        append(
+          h_ln,
+          lin_H_fun(
+            data2$Hmax[i] ,
+            data2$h30[i] ,
+            data2$h50[i] ,
+            data2$h70[i]
+            ,
+            data2$p50[i] ,
+            data2$p70[i]
+          )
+        )
+      puunro <- append(puunro, data2$Puunro[i])
+      puulaji <- append(puulaji, as.character(data2$puulaji[i]))
+      
+    }
+    
+#here, I can also use  else alone instead of if (data2$puulaji[i] == "vaahtera") 
+    if (data2$puulaji[i] == "vaahtera") {
+      dbh_map <-
+        append(dbh_map, (
+          map_DBH_fun(
+            data2$Hmax[i] ,
+            data2$Hmean[i],
+            data2$h30[i]
+            ,
+            data2$h70[i] ,
+            data2$p50[i],
+            data2$h90[i] ,
+            data2$p90[i]
+          )
+        ))
+      
+      h_map <-
+        append(h_map, (map_H_fun(data2$h30[i] , data2$h50[i] , data2$h70[i])))
+      puunro <- append(puunro, data2$Puunro[i])
+      puulaji <- append(puulaji, as.character(data2$puulaji[i]))
+    }
+  }
+  #combine the  dbh and height vectors created for linden column-wise
+  a <- cbind(dbh_ln, h_ln)
+  #combine the  dbh and height vectors created for maple column-wise
+  b <- cbind(dbh_map, h_map)
+  
+  #now, combine both data but row_wise since we want them to be merged
+  c <- rbind(a, b)
+#finally, add the plot number and names of the species which are
+  #vectors created earlier for the entire data
+  maple_linden <- cbind.data.frame(puunro, puulaji, c)
+  
+  #reset the index/rownames to default index
+  rownames(maple_linden) <- NULL
+  
+  #rownames(maple_linden)<-rownames(maple_linden, do.NULL=T, prefix = "Obs.")
+  
+  #rename columns one and two
+ colnames(maple_linden)[colnames(maple_linden)=="dbh_ln"] <- "DBH"
+ colnames(maple_linden)[colnames(maple_linden)=="h_ln"] <- "height"
+  
+ #names(maple_linden)[1]<-"DBH"  #wont use this cos column number might change
+  #names(maple_linden) = c("DBH", "height")
+}
+```
+
+let's see the summary and the head part of the modelled data
+```{r, message=FALSE, warning=FALSE}
+summary(maple_linden)
+head(maple_linden, n=15)
+```
+
+
+ create a more advanced plot matrix with ggpairs()
+```{r, message=FALSE, warning=FALSE}
+p2 <- ggpairs(maple_linden, mapping = aes(col=puulaji, alpha=0.3), lower = list(combo = wrap("facethist", bins = 20)))
+
+#draw the plot
+p2
+```
+As we can see from the distribution above, lehmus is much more than vaahtera. We can also see that the diameter is highly correlated with the DBH. There also seems to be some outliers.
+Regression models are useful ways to make predictions for extrapolating and interpolating because it is pratically impossible to capture the entire reality. In this exercise, I adopted the principle of parsimony by using as less predictors as possible. I also tried my hands on creating functions for making te predictions. However, it can be simply done by using a function in R called "predict.lm()"
+
+
+
+```{r, message=FALSE, warning=FALSE}
+#write the data into csv format
+write.csv(maple_linden, file = "C:/Users/oyeda/Desktop/R_COURSE/modelling/Trees_DBH_H"
+          , row.names = TRUE)
+```
+
+**_NOTE: THERE ARE SIMPLER APPROACHES TO CALCULATING THE HEIGHT AND
+DBH INTO NEW COLUMNS E.G DATA$DBH<- FORMULA(USING NECESSARY COLUMNS). BUT I CHOSE TO TRY OUT LOOPING, BINDING AND APPENDING.  THE PREDICTION CAN ALSO BE DONE BY USING THE PREDICT.LM FUNCTION IN R_**

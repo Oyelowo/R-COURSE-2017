@@ -1,0 +1,512 @@
+#?abline
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$ELAVALARAJA~data$PITUUS,data=data)
+fit <- glm(PITUUS~ELAVALARAJA, data = data)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+plot(data$PITUUS, data$ELAVALARAJA, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#d) Add a line x = y to the picture. How would you describe the
+#observation on the line? What about on top of the line?
+###########################################################
+#?abline
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$ELAVALARAJA~data$PITUUS,data=data)
+fit <- glm(PITUUS~ELAVALARAJA, data = data)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+plot(data$PITUUS, data$ELAVALARAJA, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#d) Add a line x = y to the picture. How would you describe the
+#observation on the line? What about on top of the line?
+###########################################################
+#?abline
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$ELAVALARAJA~data$PITUUS,data=data,  ylim = c(0,40))
+fit <- glm(PITUUS~ELAVALARAJA, data = data,  ylim = c(0,40))
+plot(data$PITUUS, data$ELAVALARAJA, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#d) Add a line x = y to the picture. How would you describe the
+#observation on the line? What about on top of the line?
+###########################################################
+#?abline
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$ELAVALARAJA~data$PITUUS,data=data,  ylim = c(0,40))
+fit <- glm(PITUUS~ELAVALARAJA, data = data)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+plot(data$PITUUS, data$ELAVALARAJA, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#d) Add a line x = y to the picture. How would you describe the
+#observation on the line? What about on top of the line?
+###########################################################
+#?abline
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$ELAVALARAJA~data$PITUUS,data=data,  ylim = c(0,40))
+fit <- glm(ELAVALARAJA~PITUUS, data = data)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+plot(ELAVALARAJA~PITUUS, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+plot(ELAVALARAJA~PITUUS, data = data, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$ELAVALARAJA~data$PITUUS,data=data,  ylim = c(0,40))
+fit <- glm(ELAVALARAJA~PITUUS, data = data)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+plot(ELAVALARAJA~PITUUS, data = data, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$ELAVALARAJA~data$PITUUS,data=data,  ylim = c(0,40))
+abline(a=0,b=1,col=4,lwd=3))
+plot(ELAVALARAJA~PITUUS, data = data, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+k <- 1
+for (i in 1:2) {
+for (j in 1:2) {
+par(mfg=c(i,j,2,2))
+abline(0,1,lwd=3,col=k)
+k <- k+1
+}
+plot(ELAVALARAJA~PITUUS, data = data, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+#lm.pituus<-lm(data$PITUUS ~ data$ELAVALARAJA)
+plot(data$ELAVALARAJA~data$PITUUS,data=data,  ylim = c(0,40))
+fit <- lm(ELAVALARAJA~PITUUS, data = data)
+abline(fit, col="blue", lwd=2)
+plot(data$PITUUS~data$ELAVALARAJA,data=data)
+fit <- lm(PITUUS ~ ELAVALARAJA, data = data)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+plot(data$PITUUS~data$ELAVALARAJA,data=data, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+fit <- lm(PITUUS ~ ELAVALARAJA, data = data)
+co <- coef(fit)
+plot(ELAVALARAJA~PITUUS,data=data, type = "p", ylim = c(0,40),
+xlab = "Height", ylab = "Height Living Crown")
+fit <- lm(ELAVALARAJA~PITUUS, data = data)
+co <- coef(fit)
+abline(fit, col="blue", lwd=2)
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+#plot(p1$LPM, p1$PITUUS)
+or
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+#plot(p1$LPM, p1$PITUUS)
+#or
+#plot(p1$PITUUS~p1$LPM, col="green")
+#or
+plot(PITUUS~LPM, p1)
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(p1$LPM, p1$PITUUS)
+#or
+#plot(p1$PITUUS~p1$LPM, col="green")
+#or
+plot(PITUUS~LPM, p1)
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(p1$LPM, p1$PITUUS)
+#or
+plot(p1$PITUUS~p1$LPM, col="green")
+#or
+plot(PITUUS~LPM, p1)
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(p1$LPM, p1$PITUUS, col="red")
+#or
+#plot(p1$PITUUS~p1$LPM, col="green")
+#or
+#plot(PITUUS~LPM, p1)
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(p1$LPM, p1$PITUUS, col="red")
+#or
+#plot(p1$PITUUS~p1$LPM, col="green")
+#or
+#plot(PITUUS~LPM, p1)
+-  **b) Change the picture so that the observations are drawn as green circles with black border.**
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+#c) Change the style of the two differing observations as red triangles with black border
+#(form a new subset and draw it with points function)
+p2<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+p2<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+p2<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(p1$LPM, p1$PITUUS)
+or
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+p2<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+abline(h=250,lwd=2,col="red")
+?abline
+abline(v=550,lwd=2,col="red")
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+text_corner(text="Erroneous observations", position= "bottomright")
+pines_canopy1 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==1)
+pines_canopy2 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==2)
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+p1<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+plot(p1$LPM, p1$PITUUS)
+or
+plot(p1$LPM, p1$PITUUS,pch= 21,col="black",type= "p", bg= "green")
+p2<-subset(data, PUULAJI==3 &  LATVKERROS==1)
+points(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+plot(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+plot(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+# Add text
+# Add text using the following Corner_text function:
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using
+#functions
+text_corner(text="Erroneous observations", position= "bottomright")
+plot(p2$LPM, p2$PITUUS, pch = 24, col ="black", bg = "red")
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+# Add text
+# Add text using the following Corner_text function:
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using
+#functions
+text_corner(text="Erroneous observations", position= "bottomright")
+plot(p2$LPM, p2$PITUUS, ylab = "Height",xlab = "DBH", pch = 24, col ="black", bg = "red")
+#abline(h=250, v=0,lwd=2,col="red")
+abline(h=250,lwd=2,col="red")
+?abline
+#b) Add line x=550 to the picture and use the same styles.
+abline(v=550,lwd=2,col="red")
+abline(b=1.1, lwd=2, col="green", lm(PITUUS ~LPM, data = p2))
+abline(h=0, v=0,b=1.1, col = "yellow")
+abline(h = 0, lty = 2)
+# Add text
+# Add text using the following Corner_text function:
+#create function to add text
+text_corner <- function(text, position="bottomright"){
+legend(position,legend=text, bty ="n", pch=NA)
+}
+#use the function to add the legend.
+#NOTE: I can do this directly, Just trying my hands on using
+#functions
+text_corner(text="Erroneous observations", position= "bottomright")
+#canopy cover layer as a function of stem diameter.
+pines_canopy1 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==1)
+pines_canopy2 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==2)
+#plot height as a function of stem diameter
+{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+main="Height vs Stem diameter",col="blue")
+#alternatives
+#plot(data$LPM, data$PITUUS)
+#plot(data$PITUUS ~ data$LPM)
+par(new=T)
+plot(PITUUS ~ LPM, pines_canopy2, xlim=c(min(pines_canopy1$LPM),
+max(pines_canopy1$LPM)), xlab=NA, ylab=NA,
+ylim=c(min(pines_canopy1$PITUUS),max(pines_canopy1$PITUUS)),
+col="red")
+legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+col=c("blue", "red"), pch = 1, cex=0.8)
+#instead of using bottomright, a coordinate for the legend can
+#also be used. e,g 410, 190
+}
+#alternatively, this can be dine by plotting for the first,
+#and basically adding points from the second data
+{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+main="Height vs Stem diameter",col="blue")
+points(pines_canopy2$LPM, pines_canopy2$PITUUS, pch=1, col="red")
+# Add a legend
+legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+col=c("blue", "red"), pch = 1, cex=0.8)
+}
+#canopy cover layer as a function of stem diameter.
+pines_canopy1 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==1)
+pines_canopy2 <- subset(data, data$PUULAJI==1 & data$LATVKERROS==2)
+#plot height as a function of stem diameter
+{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+main="Height vs Stem diameter",col="blue")
+#alternatives
+#plot(data$LPM, data$PITUUS)
+#plot(data$PITUUS ~ data$LPM)
+par(new=T)
+plot(PITUUS ~ LPM, pines_canopy2, xlim=c(min(pines_canopy1$LPM),
+max(pines_canopy1$LPM)), xlab=NA, ylab=NA,
+ylim=c(min(pines_canopy1$PITUUS),max(pines_canopy1$PITUUS)),
+col="red")
+legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+col=c("blue", "red"), pch = 1, cex=0.8)
+#instead of using bottomright, a coordinate for the legend can
+#also be used. e,g 410, 190
+}
+#alternatively, this can be dine by plotting for the first,
+#and basically adding points from the second data
+#{plot(PITUUS ~ LPM, pines_canopy1, xlab="Stem diameter", ylab="Height",
+#     main="Height vs Stem diameter",col="blue")
+#points(pines_canopy2$LPM, pines_canopy2$PITUUS, pch=1, col="red")
+# Add a legend
+#legend("bottomright", legend=c("Pines in Canopy 1", "Pines in Canopy 2"),
+#       col=c("blue", "red"), pch = 1, cex=0.8)
+#}
+plot(spruceLayer1$LPM, spruceLayer1$PITUUS,
+xlab = "DBH", ylab = "Height", main="Spruce in Crown Layer 2", col="red")
+par(mfcol=c(1,2))
+pineLayer1<- subset(data, data$PUULAJI==1 & data$LATVKERROS==1)
+pine.hist<- hist(pineLayer1$LPM, main = "Histogram of diameter of Pine",
+col = "violet")
+spruceLayer1<-subset(data, data$PUULAJI==2 & data$LATVKERROS==1)
+spruce.hist<-hist(data$LPM, main = "Histogram of diameter of Spruce",
+col="yellow")
+plot(spruceLayer1$LPM, spruceLayer1$PITUUS,
+xlab = "DBH", ylab = "Height", main="Spruce in Crown Layer 2", col="red")
+#plot(x=spruceLayer1$LPM, y=spruceLayer1$PITUUS) alternatively
+#b) for pines in the second canopy cover layer
+pineLayer2<- subset(data, data$PUULAJI==1 & data$LATVKERROS==2)
+plot(pineLayer2$PITUUS, pineLayer2$LPM, main = "Pines in Crown Layer 2",
+xlab = "DBH", ylab = "Height", col="brown")
+pineLayer2<- subset(data, data$PUULAJI==1 & data$LATVKERROS==2)
+plot(pineLayer2$PITUUS, pineLayer2$LPM, main = "Pines in Crown Layer 2",
+xlab = "DBH", ylab = "Height", col="brown")
+plot(spruceLayer1$LPM, spruceLayer1$PITUUS,
+xlab = "DBH", ylab = "Height", main="Spruce in Crown Layer 2", col="red")
+#plot(x=spruceLayer1$LPM, y=spruceLayer1$PITUUS) alternatively
+a<-qqplot(birchLayer1$LPM, birchLayer1$PITUUS, plot.it = TRUE,
+xlab = deparse(substitute(birchLayer1$LPM)),
+ylab = deparse(substitute(birchLayer1$PITUUS)))
+#?qqplot
+par(mfrow=c(1,2))
+qqnorm(s.birchLayer1$LPM, main = "DBH Q-Q Plot")
+s.birchLayer1<- subset(data, data$PUULAJI==3 & data$LATVKERROS==1)
+#simple pairing but I used a mmore detailed pairer after this
+pairs(~LPM + PITUUS + ELAVALARAJA + LATVUSLEV, data = s.birchLayer1)
+## put (absolute) correlations on the upper panels,
+## with size proportional to the correlations.
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...)
+{
+usr <- par("usr"); on.exit(par(usr))
+par(usr = c(0, 1, 0, 1))
+r <- abs(cor(x, y))
+txt <- format(c(r, 0.123456789), digits = digits)[1]
+txt <- paste0(prefix, txt)
+if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+pairs(~LPM+PITUUS+ELAVALARAJA+LATVUSLEV, data=s.birchLayer1,
+lower.panel=panel.smooth, upper.panel=panel.cor,
+pch=20, main="Birch Scatterplot Matrix")
+a<-qqplot(birchLayer1$LPM, birchLayer1$PITUUS, plot.it = TRUE,
+xlab = deparse(substitute(birchLayer1$LPM)),
+ylab = deparse(substitute(birchLayer1$PITUUS)))
+#?qqplot
+par(mfrow=c(1,2))
+qqnorm(s.birchLayer1$LPM, main = "DBH Q-Q Plot")
+qqline(s.birchLayer1$LPM, col="red")
+qqnorm(s.birchLayer1$PITUUS, main = "Height Q-Q Plot")
+qqline(s.birchLayer1$PITUUS, col="red")
+a<-qqplot(birchLayer1$LPM, birchLayer1$PITUUS, plot.it = TRUE,
+xlab = deparse(substitute(birchLayer1$LPM)),
+ylab = deparse(substitute(birchLayer1$PITUUS)))
+a<-qqplot(s.birchLayer1$LPM, birchLayer1$PITUUS, plot.it = TRUE,
+xlab = deparse(substitute(birchLayer1$LPM)),
+ylab = deparse(substitute(birchLayer1$PITUUS)))
+a<-qqplot(s.birchLayer1$LPM, birchLayer1$PITUUS, plot.it = TRUE,
+xlab = deparse(substitute(birchLayer1$LPM)),
+ylab = deparse(substitute(birchLayer1$PITUUS)))
+a<-qqplot(s.birchLayer1$LPM, s.birchLayer1$PITUUS, plot.it = TRUE,
+xlab = deparse(substitute(s.birchLayer1$LPM)),
+ylab = deparse(substitute(s.birchLayer1$PITUUS)))
+?shapiro.test
+shapiro.test(s.birchLayer1$LPM)
+shapiro.test(s.birchLayer1$PITUUS)
+?shapiro.test
+a<-qqplot(s.birchLayer1$LPM, s.birchLayer1$PITUUS, plot.it = TRUE,
+xlab = deparse(substitute(s.birchLayer1$LPM)),
+ylab = deparse(substitute(s.birchLayer1$PITUUS)))
+?shapiro.test
+shapiro.test(s.birchLayer1$LPM)
+shapiro.test(s.birchLayer1$PITUUS)
+rm(list=ls())
+setwd("C:/Users/oyeda/Desktop/R_COURSE/assignment3")
+getwd()
+data <- read.table("puudata_rikki.txt", nrows = 20, header = T, skip = 2, sep = ";")
+View(data)
+View(data)
+rm(list=ls())
+setwd("C:/Users/oyeda/Desktop/R_COURSE/assignment2")
+getwd()
+data<-read.table("puudata_20.txt", header = TRUE, sep="\t")
+summary(data) #summary of the data
+meanDiameter <- mean(data$LPM)
+meanDiameter
+meanHeight <- mean(data$PITUUS)
+meanHeight
+dbh <- data$LPM
+h <- data$PITUUS
+s <- data$PUULAJI
+mat <- matrix(c(dbh, h, s), nrow=length(dbh))
+View(mat)
+View(mat)
+data$BA <- with(data, (pi*h^2)/4)
+mat <- cbind(mat, data$BA)
+mat
+colnames(mat) <- c("DBH", "H", "S", "BA")
+mat
+#load the data "puudata_300.txt" from the directory.
+data300 <- read.table("puudata_300.txt", sep = "\t", header = TRUE)
+?xtabs
+#s.tab<-table(data300$LATVKERROS, data300$PUULAJI)
+layerSpp <-xtabs(~LATVKERROS+PUULAJI, data300)
+#load the data "puudata_300.txt" from the directory.
+data300 <- read.table("puudata_300.txt", sep = "\t", header = TRUE)
+#?xtabs
+#s.tab<-table(data300$LATVKERROS, data300$PUULAJI)
+layerSpp <-xtabs(~LATVKERROS+PUULAJI, data300)
+#load the data "puudata_300.txt" from the directory.
+data300 <- read.table("puudata_300.txt", sep = "\t", header = TRUE)
+#?xtabs
+#s.tab<-table(data300$LATVKERROS, data300$PUULAJI)
+layerSpp <-xtabs(~LATVKERROS+PUULAJI, data300)
+#load the data "puudata_300.txt" from the directory.
+data300 <- read.table("puudata_300.txt", sep = "\t", header = TRUE)
+#?xtabs
+#s.tab<-table(data300$LATVKERROS, data300$PUULAJI)
+layerSpp <-xtabs(~LATVKERROS+PUULAJI, data300)
+layerSpp
+highSpp2 <- layerSpp[2,] / (layerSpp[2,] + layerSpp[1,])
+highSpp2
+#Create the following subsets from file puudata_300.txt:
+#a) Trees that are measured from plot (KOEALA) 865
+treesA <- subset(data300, data300$KOEALA==865)
+head(treesA)
+#b) Trees that are measured from plots 865 and 490
+treesB<- subset(data300, data300$KOEALA==865 | data300$KOEALA==490)
+summary(treesB)
+#c) Those spruce trees (PUULAJI=2) that belong to second crown layer
+#and are over 10 meters tall (the height is given in decimeters).
+treesC <- subset(data300, data300$PUULAJI==2 & data300$LATVKERROS==2 & data300$PITUUS>100)
+head(treesC)
+#d) Those trees in the first crown layer, whose diameter is over 150 mm and
+#that are not pines or spruces (species 1 and 2)
+treesD<- subset(data300, data300$LATVKERROS==1 & data300$LPM>150 & data300$PUULAJI!=1 & data300$PUULAJI!=2)
+head(treesD)
+a<-c(4, 5, 33)
+b<-c(-48, 0, 45)
+c<-c(7, 3, 1)
+m=matrix(c(a,b,c), ncol=3, nrow = 3, byrow = TRUE)
+rownames(m) <- c("r1","r2","r3")
+colnames(m) <- c("A", "B", "C")
+m
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+y <- seq(0:4)
+y
+rep(1:5, rep(5,5), length.out=25)
+##or
+rep(seq(0:4), rep(5,5), length.out=25)
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4), rep(5,5))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4), rep(4,5))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4), rep(5,4))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4), rep(5,5))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(-1:4), rep(5,5))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4), rep(5,5))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(0, each=5,(seq(0:4), rep(5,5)))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4), rep(5,5))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:5), rep(5,5))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4), rep(5,5))
+rep(0:4, rep(5,5))
+rep(0:4, each=5)
+rep(seq(0:4), each=5)
+sr10 = solar.radiation + 10
+solar.radiation <- c(11.1, 10.6, 6.3, 8.8, 10.7, 11.2, 8.9, 12.2)
+mean(solar.radiation)
+median(solar.radiation)
+var(solar.radiation)
+sr10 = solar.radiation + 10
+sr10
+mean(sr10)
+median(sr10)
+var(sr10)
+srm2=solar.radiation * -2
+srm2
+mean(srm2)
+median(srm2)
+var(srm2)
+rand=ceiling(runif(25, 1, 100))
+rand
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+#a) Name the rows as r1-r5 and the columns as c1-c5
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+rand=ceiling(runif(25, 1, 100))
+rand
+mat=matrix(rand, ncol=5, nrow=5, byrow=T)
+mat
+#a) Name the rows as r1-r5 and the columns as c1-c5
+rownames(mat) <- c("r1","r2","r3","r4","r5")
+colnames(mat) <- c("c1","c2","c3","c4","c5")
+mat
+sum(mat)
+#c) Substract the minimum of the matrice from every other figure in the Matrix
+mat2=mat - min(mat)
+mat2
+#d) Print the figure that is in column 3 of row 4
+mat2[4,3]
